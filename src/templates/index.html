@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block body %}
+{% if uploads==[] %}
+<div class="term">
+    <h2>Nothing here yet...</h2>
+</div>
+{% endif %}
 {% for item in uploads %}
 <div class="term" id="{{ item.uploaded_at }}">
     <span class="user">maury</span> |

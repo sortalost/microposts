@@ -20,9 +20,11 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
             {% if session.get('logged_in') %}
             <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout" style="color:rgb(255, 71, 71)">Logout</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -42,11 +44,11 @@
     {% endblock %}
     </main>
     <footer>
-        <span><a href="/about">About</a></span>
+        <span><a target="_blank" href="#">Other</a></span>
         &nbsp
-        <span><a href="/contact">Contact</a></span>
+        <span><a target="_blank" href="#">External</a></span>
         &nbsp
-        <span><a target="_blank" href="#">External links</a></span>
+        <span><a target="_blank" href="#">Links</a></span>
     </footer>
 </body>
 </html>

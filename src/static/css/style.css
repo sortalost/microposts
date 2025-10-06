@@ -47,6 +47,9 @@ footer {
     border: solid 2px #1f1f1f;
 }
 
+footer a {
+  color:inherit
+}
 
 footer a:hover {
   text-decoration: underline;
