@@ -1,3 +1,5 @@
+import os
+
 SECRET_KEY = "secret123"
 DEBUG = True
 USERNAME = "maury"
