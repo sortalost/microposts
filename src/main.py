@@ -3,6 +3,8 @@ from datetime import datetime
 from flask import Flask, render_template, redirect, request, flash, url_for
 
 app = Flask(__name__)
+USERNAME = "test"
+PASSWORD = "123"
 
 @app.route("/")
 def index():
@@ -62,6 +64,20 @@ def contact():
 def notfound(e):
     return render_template("404.html")
 
+@app.route("/login", methods=["GET","POST"])
+def login():
+    if session.get("logged_in"):
+        flash("Already logged in.")
+        return redirect(url_for("index"))
+    if request.method=="POST":
+        if request.form['username']==USERNAME and request.form['password']==PASSWORD:
+            flash("Logged in.")
+            session['logged_in']==True
+            return redirect(url_for("index"))
+        else:
+            flash('Invalid username or password')
+    return render_template("login.html")
+
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
