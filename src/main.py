@@ -24,12 +24,10 @@ def dashboard_new():
         desc = request.form.get("description", "")
         date_str = request.form.get("date")
         if date_str:
-            display_datetime = datetime.strptime(date_str, "%Y-%m-%dT%H:%M")
+            display_datetime_ts = int(datetime.strptime(date_str, "%Y-%m-%d").timestamp())
         else:
-            display_datetime = datetime.now()
-
-        display_datetime_ts = int(display_datetime.timestamp())
-        display_datetime_str = display_datetime.strftime("%Y-%m-%d(%a)%H:%M")
+            display_datetime_ts = int(datetime.now().timestamp())
+        display_datetime_str = datetime.fromtimestamp(display_datetime_ts).strftime("%Y-%m-%d(%a)%H:%M")
         if not file:
             flash("No file uploaded", "error")
             return redirect(request.url)
