@@ -1,3 +1,6 @@
+:root{
+    --width:650px; /* width of the container thats contains the image and text */
+}
 
 .term:target {
     border-color: #eeeeee!important;
@@ -8,7 +11,7 @@
     background-color: #000000c5;
     color: #b3b8c3;
     width: 90%;
-    max-width: 555px;
+    max-width: var(--width);
     border: solid 2px #1f1f1f;
     margin: 5px auto;
     padding: 3px;
