@@ -74,8 +74,10 @@ def notfound(e):
 
 @app.errorhandler(500)
 def servererror(e):
-    tb = traceback.format_exc()
-    return "<pre>tb</pre>"
+    message = "Internal server error. My bad </3"
+    if app.debug:
+        message = traceback.format_exc()
+    return render_template("500.html", message=message)
 
 @app.route("/login", methods=["GET","POST"])
 def login():
