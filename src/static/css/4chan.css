@@ -1,5 +1,6 @@
 :root{
     --width:650px; /* width of the container thats contains the image and text */
+    --img:43%; /* 33% gives a 4chan look, but 43-50 show the image nicely */
 }
 
 .term:target {
@@ -27,7 +28,7 @@
 
 .media img {
     width: 100%;
-    max-width: 50%;
+    max-width: var(--img);
     padding: 2px 4px 2px 2px;
     float: left;
     box-sizing: border-box;
