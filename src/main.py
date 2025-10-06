@@ -32,7 +32,7 @@ def dashboard_new():
             flash("No file uploaded", "error")
             return redirect(request.url)
         try:
-            result = utils.db.upload_to_github(file)
+            result = utils.upload_image(file)
             flash("File uploaded successfully!", "success")
             all_images = utils.get_data()
             entry = {

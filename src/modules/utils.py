@@ -77,6 +77,10 @@ def save_data(data):
     data_json = json.dumps(data, indent=4)
     return db.save_remote_data(data_json, current_app.config['DATA_FILE'])
 
+def upload_image(file_storage):
+    db = get_db()
+    return db.upload_to_github(file_storage)
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
