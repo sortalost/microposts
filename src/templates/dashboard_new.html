@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" href="/static/css/dashboard.css">
+{% endblock %}
+{% block body %}
+<div class="term">
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <label for="file">Select Image</label>
+        <input type="file" id="file" name="file" accept="image/*" required>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" value="{{ today }}">
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="previewContainer" class="hidden">
+        <h3>Preview:</h3>
+        <img id="previewImage" src="" alt="Preview">
+    </div>
+</div>
+
+<script src="/static/js/dashboard_new.js"></script>
+{% endblock %}

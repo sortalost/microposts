@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="Maury's art">
+    <meta name="author" content="octaviomaury1@gmail.com">
+    <meta property="og:title" content="Octavio Maury">
+    <meta property="og:description" content="Octavio Maury's Art">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maury.vercel.app">
+    <meta property="og:image" content="//sortalost.is-a.dev/static/images/banner.gif">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/4chan.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    {% block scripts %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            {% if session.get('logged_in') %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="flash-con">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+    {% block body %}
+    {% endblock %}
+    </main>
+</body>
+</html>

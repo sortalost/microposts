@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+{% for term in terms %}
+<div class="term" id="{{ term.ts }}">
+    <span class="user">maury</span> | {{ term.date_str }} | <span class="ago" data-timestamp='{{ term.ts }}'></span> | <a class="url" href="#{{ term.ts }}">#{{ term.ts }}</a>
+    {% for image in term.images %}
+    <br>
+    <span>file: <a class="url" href="{{ image }}" target="_blank">{{ image.split('/')[-1] }}</a></span>
+    <div class="media">
+        <a href="{{ image }}"><img src="{{ image }}"></a>
+    </div>
+    {% endfor %}
+    {% for status in term.statuses %}
+    <pre style="white-space: pre-line;">{{ status|safe }}</pre>
+    {% endfor %}
+</div>
+{% endfor %}
+
+<script src="/static/js/time.js"></script>
+{% endblock %}

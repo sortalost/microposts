@@ -1,0 +1,156 @@
+:root {
+    --bg-img:url('/static/images/bg.jpeg');
+}
+
+.term:target {
+    border-color: #eeeeee!important;
+}
+
+.term {
+    font-size: 16px!important;
+    background-color: #000000c5;
+    color: #b3b8c3;
+    width: 90%;
+    max-width: 555px;
+    border: solid 2px #1f1f1f;
+    margin: 5px auto;
+    padding: 3px;
+    display: table;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.user {
+    color: #5e6dc4;
+    font-weight: bold;
+}
+
+.media img {
+    width: 100%;
+    max-width: 40%;
+    padding: 2px 4px 2px 2px;
+    float: left;
+    box-sizing: border-box;
+}
+
+.term:hover {
+    border: solid 2px #252525;
+}
+
+.neko {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+.bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+}
+
+.controls {
+    background-color: #0C090A!important;
+    border: solid 2px #0C090A!important;
+    text-decoration: none;
+    color: #b3b8c3!important;
+    padding: 3px;
+}
+
+.controls:hover {
+    background-color: #b3b8c3!important;
+    color: #0C090A!important;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.reply {
+    text-decoration: underline;
+    color: #b17ebd !important;
+}
+
+.reply:hover {
+    background-color: #b17ebd!important;
+    color: #0C090A!important;
+}
+
+.url {
+    text-decoration: underline;
+    color: #b3b8c3!important;
+}
+
+.url:hover {
+    background-color: #b3b8c3!important;
+    color: #0C090A!important;
+}
+
+html {
+    background-image: var(--bg-img);
+    background-repeat: repeat;
+    color: #c5c8c6;
+    background-attachment: fixed;
+    font-family: math;
+}
+
+.greentext {
+    color: #7bbd67!important;
+}
+
+.redtext {
+    color: #c94545!important;
+}
+
+nav {
+    text-align: center;
+    padding: 8px;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 8px;
+}
+
+nav ul li a {
+    color: #636363ff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 600px) {
+    .media img {
+        width: 48%;
+        float: left;
+        margin-bottom: 4px;
+    }
+    nav ul li {
+        display: block;
+        margin: 4px 0;
+    }
+    .term {
+        width: 95%;
+    }
+}
