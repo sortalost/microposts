@@ -37,7 +37,7 @@ class DB:
             con = self.repo.get_contents(file_path, ref=self.branch).decoded_content.decode("utf-8")
         else:
             con = self.repo.get_contents(file_path, ref=branch).decoded_content.decode("utf-8")
-        if eval_output is True:
+        if eval_output:
             return eval(con)
         return con
 
@@ -58,16 +58,24 @@ class DB:
             self.repo.update_file(file_path, msg, file_bytes, sha, branch=branch)
         user_repo = self.repo.full_name
         raw_url = f"https://raw.githubusercontent.com/{user_repo}/{branch}/{file_path}"
-        return {"path": file_path, "url": raw_url, "name":unique_name, "timestamp":timestamp}
+        return {"path": file_path, "url": raw_url, "name": unique_name, "timestamp": timestamp}
 
-db = DB(current_app.config['GITHUB_TOKEN'], current_app.config['GITHUB_REPO'], (current_app.config['GITHUB_USERNAME'], current_app.config['GITHUB_EMAIL']))
+
+def get_db():
+    return DB(
+        github_token=current_app.config['GITHUB_TOKEN'],
+        database_repo=current_app.config['GITHUB_REPO'],
+        author=(current_app.config['GITHUB_USERNAME'], current_app.config['GITHUB_EMAIL'])
+    )
 
 def get_data():
+    db = get_db()
     return db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)
 
 def save_data(data):
-    data = json.dumps(data, indent=4)
-    return db.save_remote_data(data, current_app.config['DATA_FILE'])
+    db = get_db()
+    data_json = json.dumps(data, indent=4)
+    return db.save_remote_data(data_json, current_app.config['DATA_FILE'])
 
 def login_required(f):
     @wraps(f)
