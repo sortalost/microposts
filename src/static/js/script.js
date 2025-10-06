@@ -27,6 +27,14 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  function adjustBodyPadding() {
+      const footer = document.querySelector('.footer');
+      if (!footer) return;
+      const footerHeight = footer.offsetHeight;
+      document.body.style.paddingBottom = footerHeight + 'px';
+  }
   setInterval(updateTimeAgo, 30*1000);
   updateTimeAgo()
+  window.addEventListener('load', adjustBodyPadding);
+  window.addEventListener('resize', adjustBodyPadding);
 });

@@ -28,6 +28,7 @@
             {% endif %}
         </ul>
     </nav>
+    
     <div id="flash-container">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -39,10 +40,12 @@
         {% endif %}
         {% endwith %}
     </div>
+    
     <main>
     {% block body %}
     {% endblock %}
     </main>
+    
     <footer>
         <span><a target="_blank" href="#">Other</a></span>
         &nbsp
@@ -50,5 +53,7 @@
         &nbsp
         <span><a target="_blank" href="#">Links</a></span>
     </footer>
+
+    <script src="/static/js/script.js"></script>
 </body>
 </html>

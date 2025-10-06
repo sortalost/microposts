@@ -47,7 +47,8 @@ class DB:
         ext = os.path.splitext(filename)[1]
         name = os.path.splitext(filename)[0]
         timestamp = int(time.time())
-        unique_name = f"{name}_{timestamp}{ext}"
+        # unique_name = f"{name}_{timestamp}{ext}" # never mind the uniqueness
+        unique_name = f"{name}{ext}"
         file_path = f"{folder}/{unique_name}"
         file_bytes = file_storage.read()
         msg = f"Upload image: {unique_name}"
