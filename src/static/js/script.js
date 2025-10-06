@@ -35,6 +35,6 @@
   }
   
   setInterval(updateTimeAgo, 10*60*1000);
-  window.addEventListener('DOMContentLoded', adjustBodyPadding);
+  window.addEventListener('DOMContentLoaded', adjustBodyPadding);
   window.addEventListener('DOMContentLoaded', updateTimeAgo);
   window.addEventListener('resize', adjustBodyPadding);
