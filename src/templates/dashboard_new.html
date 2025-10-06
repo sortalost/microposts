@@ -9,7 +9,7 @@
         <label for="file">Select Image</label>
         <input type="file" id="file" name="file" accept="image/*" required>
         <label for="description">Description</label>
-        <textarea id="description" name="description" placeholder="Enter description..."></textarea>
+        <textarea id="description" name="description" rows="7" placeholder="Enter description..."></textarea>
         <label for="date">Date</label>
         <input type="date" id="date" name="date" value="{{ today }}">
         <button type="submit">Upload</button>
@@ -21,5 +21,5 @@
     </div>
 </div>
 
-<script src="/static/js/dashboard_new.js"></script>
+<script src="/static/js/dashboard.js"></script>
 {% endblock %}
