@@ -51,20 +51,21 @@ button:hover {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 8px 0;
-  background-color: #535353;
-  color: #bdbdbd;
-  font-size: 14px;
-  box-shadow: 0 -1px 4px rgba(0,0,0,0.1); /* subtle top border shadow */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 4px 0;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+    background-color: #000000c5;
+    border: solid 2px #1f1f1f;
 }
 
 footer a {
-  text-decoration: none;
+  color:inherit
 }
 
 nav {
