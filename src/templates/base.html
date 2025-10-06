@@ -26,15 +26,15 @@
             {% endif %}
         </ul>
     </nav>
-    <div class="flash-con">
+    <div id="flash-container">
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="flash-messages">
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
+        {% if messages %}
+        <div class="flash-wrap">
+        {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+        </div>
+        {% endif %}
         {% endwith %}
     </div>
     <main>

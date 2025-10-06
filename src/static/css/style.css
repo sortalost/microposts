@@ -28,27 +28,10 @@ button {
 button:hover {
   background: #0056b3;
 }
-
-.flash-messages {
-  list-style: none;
-  padding: 0;
-}
-
-.flash-messages li {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 6px;
-}
-
-.flash-messages li.success {
-  background: #d4edda;
-  color: #155724;
-}
-
-.flash-messages li.error {
-  background: #f8d7da;
-  color: #721c24;
-}
+.flash-wrap{position:fixed;bottom:66px;right:40px;z-index:60}
+.flash{padding:8px 12px;border-radius:8px;background:#181818aa;margin-bottom:6px;opacity:0;transform:translateX(100%);animation:slideIn .4s forwards,fadeOut .4s 5s forwards;cursor:pointer}
+.flash .error { color: #ff2e2e; }
+.flash .success { color: #00ff00; }
 
 footer {
     position: fixed;
@@ -57,15 +40,18 @@ footer {
     width: 100%;
     text-align: center;
     padding: 4px 0;
-    color: #fff;
+    color: inherit;
     font-size: 14px;
     box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
     background-color: #000000c5;
     border: solid 2px #1f1f1f;
 }
 
-footer a {
-  color:inherit
+
+footer a:hover {
+  text-decoration: underline;
+  color: #eee;
+  text-transform: uppercase;
 }
 
 nav {
