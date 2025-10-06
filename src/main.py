@@ -91,7 +91,7 @@ def login():
             flash('Invalid username or password')
     return render_template("login.html")
 
-@app.route("logout")
+@app.route("/logout")
 @utils.login_required
 def logout():
     session.clear()
