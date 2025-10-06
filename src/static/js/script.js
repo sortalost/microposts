@@ -1,5 +1,4 @@
 
-window.addEventListener("DOMContentLoaded", () => {
   function timeAgo(unixTimestamp) {
     const seconds = Math.floor(Date.now() / 1000) - unixTimestamp;
     const intervals = [
@@ -27,14 +26,15 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
   function adjustBodyPadding() {
       const footer = document.querySelector('.footer');
       if (!footer) return;
       const footerHeight = footer.offsetHeight;
       document.body.style.paddingBottom = footerHeight + 'px';
   }
-  setInterval(updateTimeAgo, 30*1000);
-  updateTimeAgo()
-  window.addEventListener('load', adjustBodyPadding);
+  
+  setInterval(updateTimeAgo, 10*60*1000);
+  window.addEventListener('DOMContentLoded', adjustBodyPadding);
+  window.addEventListener('DOMContentLoaded', updateTimeAgo);
   window.addEventListener('resize', adjustBodyPadding);
-});
