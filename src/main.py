@@ -100,5 +100,6 @@ def login():
 @utils.login_required
 def logout():
     session.clear()
+    flash("Logged out.")
     return redirect(url_for('index'))
 
