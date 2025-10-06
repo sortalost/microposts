@@ -9,9 +9,9 @@
         <label for="file">Select Image</label>
         <input type="file" id="file" name="file" accept="image/*" required>
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="7" placeholder="Enter description..."></textarea>
+        <textarea id="description" name="description" rows="7" placeholder="Enter description (optional)..."></textarea>
         <label for="date">Date</label>
-        <input type="date" id="date" name="date" value="{{ today }}">
+        <input type="datetime-local" id="date" name="date" dalue="{{ today }}" step="60">
         <button type="submit">Upload</button>
     </form>
 
