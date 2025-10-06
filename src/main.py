@@ -70,6 +70,11 @@ def contact():
 def notfound(e):
     return render_template("404.html")
 
+@app.errorhandler(500)
+def servererror(e):
+    tb = traceback.format_exc()
+    return tb
+
 @app.route("/login", methods=["GET","POST"])
 def login():
     if session.get("logged_in"):
