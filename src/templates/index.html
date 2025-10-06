@@ -25,7 +25,8 @@
         </a>
     </div>
     {% if item.description %}
-    <pre style="white-space: pre-line;">{{ item.description|safe }}</pre>
+    <!-- <pre style="white-space: pre-line;">{{ item.description|safe }}</pre> -->
+    <p style="white-space: pre-line;">{{ item.description|safe }}</p>
     {% endif %}
 </div>
 {% endfor %}
