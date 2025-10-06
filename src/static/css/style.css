@@ -28,6 +28,11 @@ button {
 button:hover {
   background: #0056b3;
 }
+
+a {
+  color:#00ffdd
+}
+
 .flash-wrap{position:fixed;bottom:66px;right:40px;z-index:60}
 .flash{padding:8px 12px;border-radius:8px;background:#181818aa;margin-bottom:6px;opacity:0;transform:translateX(100%);animation:slideIn .4s forwards,fadeOut .4s 5s forwards;cursor:pointer}
 .flash .error { color: #ff2e2e; }
@@ -36,17 +41,17 @@ button:hover {
 @keyframes fadeOut{to{opacity:0;transform:translateX(100%)}}
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 4px 0;
-    color: inherit;
-    font-size: 14px;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
-    background-color: #000000c5;
-    border: solid 2px #1f1f1f;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 4px 0;
+  color: inherit;
+  font-size: 14px;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+  background-color: #000000c5;
+  border: solid 2px #1f1f1f;
 }
 
 footer a {
