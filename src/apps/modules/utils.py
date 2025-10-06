@@ -54,7 +54,8 @@ class DB:
         filename = file_storage.filename
         ext = os.path.splitext(filename)[1]
         name = os.path.splitext(filename)[0]
-        unique_name = f"{name}_{int(time.time())}{ext}"
+        timestamp = int(time.time())
+        unique_name = f"{name}_{timestamp}{ext}"
         file_path = f"{folder}/{unique_name}"
         file_bytes = file_storage.read()
         msg = f"Upload image: {unique_name}"
@@ -65,12 +66,16 @@ class DB:
             self.repo.update_file(file_path, msg, file_bytes, sha, branch=branch)
         user_repo = self.repo.full_name
         raw_url = f"https://raw.githubusercontent.com/{user_repo}/{branch}/{file_path}"
-        return {"path": file_path, "url": raw_url}
+        return {"path": file_path, "url": raw_url, "name":unique_name, "timestamp":timestamp}
 
 db = DB(GITHUB_TOKEN, GITHUB_REPO, (GITHUB_USERNAME, GITHUB_EMAIL))
 
 def get_data():
     return db.load_remote_data(DATA_FILE, eval_output=True)
+
+def save_data(data):
+    data = json.dumps(data, indent=4)
+    return db.save_remote_data(data, DATA_FILE)
 
 def login_required(f):
     @wraps(f)

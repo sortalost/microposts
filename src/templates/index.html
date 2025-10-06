@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block body %}
-{% for term in terms %}
-<div class="term" id="{{ term.ts }}">
-    <span class="user">maury</span> | {{ term.date_str }} | <span class="ago" data-timestamp='{{ term.ts }}'></span> | <a class="url" href="#{{ term.ts }}">#{{ term.ts }}</a>
-    {% for image in term.images %}
+{% for item in uploads %}
+<div class="term" id="{{ item.uploaded_at }}">
+    <span class="user">maury</span> |
+    {{ item.display_datetime[0] }} |
+    <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
+    <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
     <br>
-    <span>file: <a class="url" href="{{ image }}" target="_blank">{{ image.split('/')[-1] }}</a></span>
+    <span>
+        file:
+        <a class="url" href="{{ item.url }}" target="_blank">
+            {{ item.name }}
+        </a>
+    </span>
     <div class="media">
-        <a href="{{ image }}"><img src="{{ image }}"></a>
+        <a href="{{ item.url }}">
+            <img src="{{ item.url }}" alt="{{ item.name }}">
+        </a>
     </div>
-    {% endfor %}
-    {% for status in term.statuses %}
-    <pre style="white-space: pre-line;">{{ status|safe }}</pre>
-    {% endfor %}
+    {% if item.description %}
+    <pre style="white-space: pre-line;">{{ item.description }}</pre>
+    {% endif %}
 </div>
 {% endfor %}
 
