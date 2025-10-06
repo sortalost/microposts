@@ -96,10 +96,12 @@ a {
 
 html {
     background-image: var(--bg-img);
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     color: #c5c8c6;
     background-attachment: fixed;
     font-family: math;
+    background-size: cover;
+    image-rendering: pixelated;
 }
 
 .greentext {

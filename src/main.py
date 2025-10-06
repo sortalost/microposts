@@ -75,14 +75,13 @@ def notfound(e):
 @app.errorhandler(500)
 def servererror(e):
     tb = traceback.format_exc()
-    return tb
+    return "<pre>tb</pre>"
 
 @app.route("/login", methods=["GET","POST"])
 def login():
     if session.get("logged_in"):
         flash("Already logged in.")
         return redirect(url_for("index"))
-
     if request.method == "POST":
         if request.form['username'] == USERNAME and request.form['password'] == PASSWORD:
             flash("Logged in.")
@@ -90,7 +89,6 @@ def login():
             return redirect(url_for("index"))
         else:
             flash('Invalid username or password')
-
     return render_template("login.html")
 
 if __name__ == "__main__":

@@ -3,13 +3,11 @@
 {%block title%}Login{%endblock%}
 
 {% block body %}
-<h1>Login</h1>
 <div class="term">
+    <h1>Login</h1>
     <form action="{{ url_for('login') }}" required method=post>
-        Username:<input type=text name=username>
-        <br>
-        Password:<input type=password required name=password>
-        <br>
+        <p>Username:<input type=text name="username"></p>
+        <p>Password:<input type=password required name="password"></p>
         <input type=submit value=Login>
     </form>
 </div>
