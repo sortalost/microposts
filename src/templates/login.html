@@ -5,7 +5,7 @@
 {% block body %}
 <h1>Login</h1>
 <div class="term">
-    <form action="{{ url_for('login'}}" required method=post>
+    <form action="{{ url_for('login') }}" required method=post>
         Username:<input type=text name=username>
         <br>
         Password:<input type=password required name=password>
