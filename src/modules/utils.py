@@ -3,16 +3,8 @@ import io
 import json
 import time
 from github import Github, InputGitAuthor
-from flask import session, flash, jsonify, request, redirect, url_for
+from flask import session, flash, jsonify, request, redirect, url_for, current_app
 from functools import wraps
-
-
-minutes_difference = 1 # one minute gap to differenciate new posts
-DATA_FILE = "images.json" # where the data and image url will be stored on github
-GITHUB_REPO = "temporary"
-GITHUB_EMAIL = "sortalost@cock.li"
-GITHUB_USERNAME = "sortalost"
-GITHUB_TOKEN = os.getenv("github_token")
 
 class DB:
     def __init__(self, github_token: str, database_repo: str, author: tuple, branch: str = None):
@@ -68,14 +60,14 @@ class DB:
         raw_url = f"https://raw.githubusercontent.com/{user_repo}/{branch}/{file_path}"
         return {"path": file_path, "url": raw_url, "name":unique_name, "timestamp":timestamp}
 
-db = DB(GITHUB_TOKEN, GITHUB_REPO, (GITHUB_USERNAME, GITHUB_EMAIL))
+db = DB(current_app.config['GITHUB_TOKEN'], current_app.config['GITHUB_REPO'], (current_app.config['GITHUB_USERNAME'], current_app.config['GITHUB_EMAIL']))
 
 def get_data():
-    return db.load_remote_data(DATA_FILE, eval_output=True)
+    return db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)
 
 def save_data(data):
     data = json.dumps(data, indent=4)
-    return db.save_remote_data(data, DATA_FILE)
+    return db.save_remote_data(data, current_app.config['DATA_FILE'])
 
 def login_required(f):
     @wraps(f)

@@ -1,0 +1,9 @@
+SECRET_KEY = "secret123"
+DEBUG = True
+USERNAME = "maury"
+PASSWORD = "123"
+DATA_FILE = "images.json" # where the data and image url will be stored on github
+GITHUB_REPO = "temporary"
+GITHUB_EMAIL = "sortalost@cock.li"
+GITHUB_USERNAME = "sortalost"
+GITHUB_TOKEN = os.getenv("github_token")

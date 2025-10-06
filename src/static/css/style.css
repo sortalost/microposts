@@ -1,3 +1,17 @@
+:root {
+    --bg-img: url('/static/images/bg.jpeg');
+}
+
+html {
+    background-image: var(--bg-img);
+    background-repeat: no-repeat;
+    color: #c5c8c6;
+    background-attachment: fixed;
+    font-family: math;
+    background-size: cover;
+    image-rendering:optimizeQuality;
+}
+
 button {
   margin-top: 20px;
   width: 100%;
@@ -34,4 +48,58 @@ button:hover {
 .flash-messages li.error {
   background: #f8d7da;
   color: #721c24;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 8px 0;
+  background-color: #535353;
+  color: #bdbdbd;
+  font-size: 14px;
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1); /* subtle top border shadow */
+}
+
+footer a {
+  text-decoration: none;
+}
+
+nav {
+  text-align: center;
+  padding: 8px;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 8px;
+}
+
+nav ul li a {
+  color: #636363ff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: #888;
+  text-transform: uppercase;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 600px) {
+  nav ul li {
+    display: block;
+    margin: 4px 0;
+  }
 }
