@@ -7,7 +7,7 @@ label {
 input[type="file"],
 input[type="date"],
 textarea {
-  width: 100%;
+  width: 95%;
   margin-top: 5px;
   padding: 8px;
   border: 1px solid #ccc;
