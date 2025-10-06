@@ -32,6 +32,8 @@ button:hover {
 .flash{padding:8px 12px;border-radius:8px;background:#181818aa;margin-bottom:6px;opacity:0;transform:translateX(100%);animation:slideIn .4s forwards,fadeOut .4s 5s forwards;cursor:pointer}
 .flash .error { color: #ff2e2e; }
 .flash .success { color: #00ff00; }
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(100%)}}
 
 footer {
     position: fixed;
