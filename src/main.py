@@ -1,8 +1,11 @@
 from .apps.modules import utils
 from datetime import datetime
+import traceback
 from flask import Flask, render_template, redirect, request, flash, url_for, session
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["PROPAGATE_EXCEPTIONS"] = True
 USERNAME = "test"
 PASSWORD = "123"
 
@@ -92,4 +95,4 @@ def login():
     return render_template("login.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
