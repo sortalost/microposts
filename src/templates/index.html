@@ -7,21 +7,21 @@
 </div>
 {% endif %}
 {% for item in uploads %}
-<div class="term" id="{{ item.uploaded_at }}">
-    <span class="user">maury</span> |
+<div class="term" id="{{ item.display_datetime[1] }}">
+    <span class="user">{{ user }}</span> |
     {{ item.display_datetime[0] }} |
     <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
     <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
     <br>
     <span>
         file:
-        <a class="url" href="{{ item.url }}" target="_blank">
+        <a class="url" href="{{url_for('proxy_image', image_path=item.path) }}" target="_blank">
             {{ item.name }}
         </a>
     </span>
     <div class="media">
-        <a href="{{ item.url }}">
-            <img src="{{ item.url }}" alt="{{ item.name }}">
+        <a href="{{ url_for('proxy_image', image_path=item.path) }}">
+            <img src="{{ url_for('proxy_image', image_path=item.path) }}" alt="{{ item.name }}">
         </a>
     </div>
     {% if item.description %}

@@ -1,20 +1,25 @@
+import requests
+import traceback
 from .modules import utils
 from datetime import datetime
-import traceback
-from flask import Flask, render_template, redirect, request, flash, url_for, session
+from flask import Flask, render_template, redirect, request, flash, url_for, session, Response, abort
+
 
 app = Flask(__name__)
 app.config.from_pyfile("config.py")
 
+
 @app.route("/")
 def index():
     uploads = utils.get_data()
-    return render_template('index.html', uploads=uploads)
+    return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
+
 
 @app.route("/dashboard")
 @utils.login_required
 def dashboard():
     return render_template("dashboard.html")
+
 
 @app.route("/dashboard/new", methods=["GET", "POST"])
 @utils.login_required
@@ -56,6 +61,26 @@ def dashboard_new():
 @utils.login_required
 def dashboard_edit():
     return render_template("dashboard_edit.html")
+
+
+@app.route("/images/<path:image_path>")
+def proxy_image(image_path):
+    headers = {
+        "Authorization": f"token {app.config['GITHUB_TOKEN']}",
+        "Accept": "application/vnd.github.v3.raw"
+    }
+    url = app.config['GITHUB_API_URL'].format(
+        owner=app.config['GITHUB_USERNAME'],
+        repo=app.config['GITHUB_REPO'],
+        path=image_path,
+        branch=app.config['GITHUB_REPO_BRANCH']
+    )
+    github_response = requests.get(url, headers=headers)
+    if github_response.status_code == 200:
+        content_type = github_response.headers.get("Content-Type", "application/octet-stream")
+        return Response(github_response.content, content_type=content_type)
+    else:
+        abort(github_response.status_code)
 
 
 @app.route("/about")

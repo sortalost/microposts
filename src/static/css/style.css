@@ -93,6 +93,10 @@ nav ul li a:hover {
   text-transform: uppercase;
 }
 
+.center {
+  text-align:center
+}
+
 /* Mobile-specific adjustments */
 @media (max-width: 600px) {
   nav ul li {
