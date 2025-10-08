@@ -85,6 +85,14 @@ a {
     text-decoration: underline;
 }
 
+.delete-status {
+    display:none;
+    color:#ff3636;
+    font-weight:bold;
+    text-align:center;
+    width:100%;
+}
+
 /* Mobile-specific adjustments */
 @media (max-width: 600px) {
     .media img {

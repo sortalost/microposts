@@ -70,9 +70,11 @@ def dashboard_edit():
 def dashboard_delete(filename):
     try:
         utils.delete_post(filename)
+        flash(f"Deleted {filename}", 'success')
         return jsonify({"success": True})
     except Exception as e:
         utils.print_debug(e)
+        flash(f"Error while deleting {filename}. Check console/logs.", 'error')
         return jsonify({"success": False, "error": str(e)}), 400
 
 

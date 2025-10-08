@@ -39,6 +39,8 @@ function deleteSetup() {
       link.addEventListener('click', function(e) {
           e.preventDefault();
           if (!confirm("Sure?")) return;
+          const statusDiv = termDiv.querySelector('.delete-status');
+          statusDiv.style.display = 'inline';
           const filename = this.dataset.filename;
           fetch(`/dashboard/delete/${filename}`, {
               method: 'POST',
@@ -52,11 +54,13 @@ function deleteSetup() {
                   this.closest('.term').remove();
               } else {
                   alert("Term removal failed: " + (data.error || "unknown error"));
+                  statusDiv.style.display = 'none';
               }
           })
           .catch(err => {
               console.error(err);
               alert("Term removal failed: network or server error");
+              statusDiv.style.display = 'none';
           });
       });
   });
