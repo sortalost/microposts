@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const datetimeInput = document.getElementById('editDatetime');
     const form = document.getElementById('editForm');
     const cancelBtn = document.getElementById('editCancel');
+    const statusDiv = document.getElementsByClassName('processing-status')[0];
+    statusDiv.style.display = 'inline';
     document.querySelectorAll('.edit-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -53,16 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     metaSpan.innerHTML = parts.join('|');
                 }
                 modal.style.display = 'none';
-                window.location.reload()
+                statusDiv.style.display = 'none';
             } else {
                 alert("Edit failed: " + (data.error || "unknown error"));
-                window.location.reload()
+                statusDiv.style.display = 'none';
             }
         })
         .catch(err => {
             console.error(err);
             alert("Edit failed: network or server error");
-            window.location.reload()
+            statusDiv.style.display = 'none';
         });
     });
 });

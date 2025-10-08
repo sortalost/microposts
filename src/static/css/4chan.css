@@ -8,7 +8,7 @@
 }
 
 .term {
-    position: relative
+    position: relative;
     font-size: 16px!important;
     background-color: #000000c5;
     color: #b3b8c3;
@@ -110,7 +110,7 @@ a {
 
 .delete-status {
     display:none;
-    color:#ff3636;
+    color:#b6b6b6;
     font-weight:bold;
     text-align:center;
     width:100%;

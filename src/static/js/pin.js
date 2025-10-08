@@ -3,7 +3,8 @@ document.querySelectorAll('.pin-link').forEach(link => {
         e.preventDefault();
         const filename = this.dataset.filename;
         const termDiv = this.closest('.term');
-
+        const statusDiv = document.getElementsByClassName('processing-status')[0];
+        statusDiv.style.display = 'inline';
         fetch(`/dashboard/pin/${filename}`, {
             method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -46,5 +47,6 @@ document.querySelectorAll('.pin-link').forEach(link => {
             console.error(err);
             alert("Pin failed: network error");
         });
+        statusDiv.style.display = 'none';
     });
 });

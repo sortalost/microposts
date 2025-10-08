@@ -38,8 +38,8 @@ function deleteSetup() {
   document.querySelectorAll('.delete-link').forEach(link => {
       link.addEventListener('click', function(e) {
           e.preventDefault();
-          if (!confirm("Sure?")) return;
-          const statusDiv = document.getElementsByClassName('delete-status')[0];
+          if (!confirm("Sure??")) return;
+          const statusDiv = document.getElementsByClassName('processing-status')[0];
           statusDiv.style.display = 'inline';
           const filename = this.dataset.filename;
           fetch(`/dashboard/delete/${filename}`, {
