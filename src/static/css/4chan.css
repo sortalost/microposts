@@ -75,12 +75,23 @@ a {
 }
 
 .delete-link {
-    color: rgb(255, 39, 39);
+    color: #ff2727;
     font-size: 70%;
 }
 
 .delete-link:hover {
-    background-color: #c94545;
+    background-color: #ff2727;
+    color:#eee;
+    text-decoration: underline;
+}
+
+.edit-link {
+    color: #36a0ff;
+    font-size: 70%;
+}
+
+.edit-link:hover {
+    background-color: #36a0ff;
     color:#eee;
     text-decoration: underline;
 }

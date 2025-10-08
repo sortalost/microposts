@@ -59,11 +59,27 @@ def dashboard_new():
     return render_template("dashboard_new.html", today=datetime.now().strftime("%Y-%m-%dT%H:%M"))
 
 
-@app.route("/dashboard/edit", methods=["GET", "POST"])
+@app.route("/dashboard/edit/<filename>", methods=["POST"])
 @utils.login_required
-def dashboard_edit():
-    flash("Still on it...")
-    return render_template("dashboard_edit.html")
+def edit_description(filename):
+    new_desc = request.form.get("description", "").strip()
+    if not new_desc:
+        return jsonify({"success": False, "error": "Description cannot be empty"}), 400
+    try:
+        data = utils.get_data()
+        found = False
+        for item in data:
+            if item["name"] == filename:
+                item["description"] = new_desc
+                found = True
+                break
+        if not found:
+            return jsonify({"success": False, "error": "File not found"}), 404
+        utils.save_data(data)
+        return jsonify({"success": True, "description": new_desc})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 
 
 @app.route("/dashboard/delete/<filename>", methods=["POST"])
