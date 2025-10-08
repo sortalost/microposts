@@ -54,8 +54,8 @@ function deleteSetup() {
                   this.closest('.term').remove();
               } else {
                   alert("Term removal failed: " + (data.error || "unknown error"));
-                  statusDiv.style.display = 'none';
               }
+              statusDiv.style.display = 'none';
           })
           .catch(err => {
               console.error(err);
