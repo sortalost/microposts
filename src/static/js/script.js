@@ -41,13 +41,13 @@ function deleteSetup() {
           if (!confirm("Sure??")) return;
           const statusDiv = document.getElementsByClassName('processing-status')[0];
           const filename = this.dataset.filename;
+          statusDiv.style.display = 'block';
           fetch(`/dashboard/delete/${filename}`, {
               method: 'POST',
               headers: {
                   'X-Requested-With': 'XMLHttpRequest'
               }
           })
-          statusDiv.style.display = 'block';
           .then(res => res.json())
           .then(data => {
               if (data.success) {
