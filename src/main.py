@@ -2,7 +2,7 @@ import requests
 import traceback
 from .modules import utils
 from datetime import datetime
-from flask import Flask, render_template, redirect, request, flash, url_for, session, Response, abort
+from flask import Flask, render_template, redirect, request, flash, url_for, session, Response, abort, jsonify
 
 
 app = Flask(__name__)
@@ -61,6 +61,7 @@ def dashboard_new():
 @app.route("/dashboard/edit", methods=["GET", "POST"])
 @utils.login_required
 def dashboard_edit():
+    flash("Still on it...")
     return render_template("dashboard_edit.html")
 
 
@@ -113,7 +114,7 @@ def notfound(e):
 @app.errorhandler(500)
 def servererror(e):
     message = "Internal server error. My bad </3"
-    if app.debug:
+    if app.debug or session.get('logged_in'):
         message = traceback.format_exc()
     return render_template("500.html", message=message)
 
@@ -123,6 +124,7 @@ def other_errors(e):
     code = getattr(e, "code", 500)
     if code in [404, 500]:
         return e
+    flash(f"Error: {code}", category='error')
     return render_template("error.html", error=e, code=code), code
 
 
@@ -133,11 +135,11 @@ def login():
         return redirect(url_for("index"))
     if request.method == "POST":
         if request.form['username'] == app.config['USERNAME'] and request.form['password'] == app.config['PASSWORD']:
-            flash("Logged in.")
+            flash("Logged in.", category='success')
             session['logged_in'] = True
             return redirect(url_for("index"))
         else:
-            flash('Invalid username or password')
+            flash('Invalid username or password', category='error')
     return render_template("login.html")
 
 
@@ -145,6 +147,6 @@ def login():
 @utils.login_required
 def logout():
     session.clear()
-    flash("Logged out.")
+    flash("Logged out.", category='error')
     return redirect(url_for('index'))
 
