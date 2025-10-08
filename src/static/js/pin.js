@@ -21,8 +21,7 @@ document.addEventListener('click', function(e){
                     const pinEl = document.createElement('span');
                     pinEl.className = 'pin-icon';
                     pinEl.title = 'Pinned';
-                    pinEl.innerHTML = '&#128204;';
-                    pinEl.style.cssText = "position:absolute; top:5px; right:5px;";
+                    pinEl.innerHTML = '<img style="height:2em" src="/static/images/pin.gif">';
                     termDiv.style.position = "relative";
                     termDiv.appendChild(pinEl);
                 }
