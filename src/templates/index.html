@@ -20,7 +20,7 @@
     {% for item in uploads %}
     <div class="term" id="{{ item.display_datetime[1] }}">
         {% if item.pin %}
-        <span class="pin-icon" title="Pinned">&#128204;</span>
+        <span class="pin-icon" title="Pinned"><img style="height:2em" src="/static/images/pin.gif"></span>
         {% endif %}
         <div class="meta">
             <span class="user">{{ user }}</span> |
