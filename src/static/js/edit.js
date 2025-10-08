@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('editForm');
     const cancelBtn = document.getElementById('editCancel');
     const statusDiv = document.getElementsByClassName('processing-status')[0];
-    statusDiv.style.display = 'inline';
     document.querySelectorAll('.edit-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -27,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cancelBtn.addEventListener('click', () => modal.style.display = 'none');
     form.addEventListener('submit', function(e) {
+        statusDiv.style.display = 'block';
         e.preventDefault();
         const filename = filenameInput.value;
         const newDesc = textarea.value;

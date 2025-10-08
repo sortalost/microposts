@@ -40,7 +40,6 @@ function deleteSetup() {
           e.preventDefault();
           if (!confirm("Sure??")) return;
           const statusDiv = document.getElementsByClassName('processing-status')[0];
-          statusDiv.style.display = 'inline';
           const filename = this.dataset.filename;
           fetch(`/dashboard/delete/${filename}`, {
               method: 'POST',
@@ -48,6 +47,7 @@ function deleteSetup() {
                   'X-Requested-With': 'XMLHttpRequest'
               }
           })
+          statusDiv.style.display = 'block';
           .then(res => res.json())
           .then(data => {
               if (data.success) {

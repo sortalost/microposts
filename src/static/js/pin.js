@@ -4,11 +4,11 @@ document.querySelectorAll('.pin-link').forEach(link => {
         const filename = this.dataset.filename;
         const termDiv = this.closest('.term');
         const statusDiv = document.getElementsByClassName('processing-status')[0];
-        statusDiv.style.display = 'inline';
         fetch(`/dashboard/pin/${filename}`, {
             method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
+        statusDiv.style.display = 'block';
         .then(res => res.json())
         .then(data => {
             if (data.success) {
