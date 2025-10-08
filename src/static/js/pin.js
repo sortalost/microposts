@@ -4,7 +4,6 @@ document.querySelectorAll('.pin-link').forEach(link => {
         const filename = this.dataset.filename;
         const termDiv = this.closest('.term');
         const statusDiv = document.getElementsByClassName('processing-status')[0];
-        statusDiv.style.display = 'block';
         fetch(`/pin/${filename}`, {
             method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -12,6 +11,7 @@ document.querySelectorAll('.pin-link').forEach(link => {
         .then(res => res.json())
         .then(data => {
             if (data.success) {
+                statusDiv.style.display = 'block';
                 this.innerText = data.pin ? "[unpin]" : "[pin]";
                 if (data.pin) {
                     termDiv.parentNode.prepend(termDiv);
@@ -45,8 +45,8 @@ document.querySelectorAll('.pin-link').forEach(link => {
         })
         .catch(err => {
             console.error(err);
+            statusDiv.style.display = 'block';
             alert("Pin failed: network error");
         });
-        statusDiv.style.display = 'none';
     });
 });
