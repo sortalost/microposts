@@ -96,7 +96,7 @@ a {
 /* Mobile-specific adjustments */
 @media (max-width: 600px) {
     .media img {
-        width: 48%;
+        width: 33%;
         float: left;
         margin-bottom: 4px;
     }
