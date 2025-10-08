@@ -13,7 +13,11 @@ app.config.from_pyfile("config.py")
 @app.route("/")
 def index():
     uploads = utils.get_data()
-    uploads.sort(key=lambda x: ((not x.get("pin", False)), -x["display_datetime"][1]))
+    try:
+        uploads.sort(key=lambda x: ((not x.get("pin", False)), -x["display_datetime"][1]))
+    except Exception as e:
+        flash(e)
+        pass
     return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
 
 
@@ -113,12 +117,15 @@ def delete(filename):
 @app.route("/dashboard/pin/<filename>", methods=["POST"])
 @utils.login_required
 def toggle_pin(filename):
+    utils.print_debug("pin fired")
     try:
         data = utils.get_data()
         found = False
         for item in data:
+            utils.print_debug(item)
             if item["name"] == filename:
                 item["pin"] = not item.get("pin", False)
+                print(item['pin'])
                 found = True
                 break
         if not found:
