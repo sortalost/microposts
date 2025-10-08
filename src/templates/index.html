@@ -5,52 +5,55 @@
 <script src="/static/js/pin.js"></script>
 {% endblock %}
 {% block body %}
-{% if uploads==[] %}
-<div class="term">
-    <h2>Nothing here yet...</h2>
-</div>
-{% endif %}
-
-<div class="processing-status">
-    <h1>Processing...</h1>
-</div>
-
-{% for item in uploads %}
-<div class="term" id="{{ item.display_datetime[1] }}">
-    {% if item.pin %}
-    <span class="pin-icon" title="Pinned">&#128204;</span>
-    {% endif %}
-    <div class="meta">
-        <span class="user">{{ user }}</span> |
-        <span class="display-datetime" data-timestamp="{{ item.display_datetime[1] }}">{{ item.display_datetime[0] }}</span> |
-        <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
-        <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
+<div id="info">
+    {% if uploads==[] %}
+    <div class="term">
+        <h2>Nothing here yet...</h2>
     </div>
-    <span>
-        file:
-        <a class="url" href="{{url_for('proxy_image', image_path=item.path) }}" target="_blank">
-            {{ item.name }}
-        </a>
-        {% if session.get('logged_in') %}
-        &nbsp;
-        <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
-        &nbsp;
-        <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
-        &nbsp;
-        <a href="#" class="pin-link" data-filename="{{ item.name }}">{% if item.pin %}[unpin]{% else %}[pin]{% endif %}</a>
+    {% endif %}
+    <div class="processing-status">
+        <h1>Processing...</h1>
+    </div>
+</div>
+
+<div id="all-items">
+    {% for item in uploads %}
+    <div class="term" id="{{ item.display_datetime[1] }}">
+        {% if item.pin %}
+        <span class="pin-icon" title="Pinned">&#128204;</span>
         {% endif %}
-    </span>
-    <div class="media">
-        <a href="{{ url_for('proxy_image', image_path=item.path) }}">
-            <img src="{{ url_for('proxy_image', image_path=item.path) }}" alt="{{ item.name }}">
-        </a>
+        <div class="meta">
+            <span class="user">{{ user }}</span> |
+            <span class="display-datetime" data-timestamp="{{ item.display_datetime[1] }}">{{ item.display_datetime[0] }}</span> |
+            <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
+            <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
+        </div>
+        <span>
+            file:
+            <a class="url" href="{{url_for('proxy_image', image_path=item.path) }}" target="_blank">
+                {{ item.name }}
+            </a>
+            {% if session.get('logged_in') %}
+            &nbsp;
+            <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
+            &nbsp;
+            <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
+            &nbsp;
+            <a href="#" class="pin-link" data-filename="{{ item.name }}">{% if item.pin %}[unpin]{% else %}[pin]{% endif %}</a>
+            {% endif %}
+        </span>
+        <div class="media">
+            <a href="{{ url_for('proxy_image', image_path=item.path) }}">
+                <img src="{{ url_for('proxy_image', image_path=item.path) }}" alt="{{ item.name }}">
+            </a>
+        </div>
+        {% if item.description %}
+        <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre>
+        <!-- <p style="white-space: pre-line;">{{ item.description|safe }}</p> -->
+        {% endif %}
     </div>
-    {% if item.description %}
-    <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre>
-    <!-- <p style="white-space: pre-line;">{{ item.description|safe }}</p> -->
-    {% endif %}
+    {% endfor %}
 </div>
-{% endfor %}
 <!-- Edit Description + Date Modal -->
 <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
     background:#000000a1; justify-content:center; align-items:center; z-index:9999;">
