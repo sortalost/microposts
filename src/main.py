@@ -61,30 +61,42 @@ def dashboard_new():
 
 @app.route("/dashboard/edit/<filename>", methods=["POST"])
 @utils.login_required
-def edit_description(filename):
+def edit(filename):
     new_desc = request.form.get("description", "").strip()
+    display_dt_str = request.form.get("display_datetime", "").strip()
     if not new_desc:
         return jsonify({"success": False, "error": "Description cannot be empty"}), 400
     try:
         data = utils.get_data()
         found = False
+        display_timestamp = None
+        display_datetime_formatted = None
+        if display_dt_str:
+            dt_obj = datetime.strptime(display_dt_str, "%Y-%m-%dT%H:%M")
+            display_timestamp = int(dt_obj.timestamp())
+            display_datetime_formatted = dt_obj.strftime("%Y-%m-%d(%a)%H:%M")
         for item in data:
             if item["name"] == filename:
                 item["description"] = new_desc
+                if display_timestamp:
+                    item["display_datetime"] = [display_datetime_formatted, display_timestamp]
                 found = True
                 break
         if not found:
             return jsonify({"success": False, "error": "File not found"}), 404
         utils.save_data(data)
-        return jsonify({"success": True, "description": new_desc})
+        return jsonify({
+            "success": True,
+            "description": new_desc,
+            "display_datetime": display_datetime_formatted
+        })
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
 
-
 @app.route("/dashboard/delete/<filename>", methods=["POST"])
 @utils.login_required
-def dashboard_delete(filename):
+def delete(filename):
     try:
         utils.delete_post(filename)
         flash(f"Deleted {filename}", 'success')
