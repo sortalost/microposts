@@ -107,7 +107,7 @@ def delete(filename):
     
 @app.route("/pin/<filename>", methods=["POST"])
 @utils.login_required
-def toggle_pin(filename):
+def pin(filename):
     data = utils.get_data()
     for item in data:
         if item["name"] == filename:
