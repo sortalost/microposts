@@ -60,6 +60,22 @@ class DB:
         user_repo = self.repo.full_name
         raw_url = f"https://raw.githubusercontent.com/{user_repo}/{branch}/{file_path}"
         return {"path": file_path, "url": raw_url, "name": unique_name, "timestamp": timestamp}
+    
+    def delete_from_github(self, filename, folder="uploads", branch=None):
+        branch = branch or self.branch
+        file_path = f"{folder}/{filename}"
+        try:
+            sha = self.repo.get_contents(file_path, ref=branch).sha
+            self.repo.delete_file(
+                path=file_path,
+                message=f"Delete image: {filename}",
+                sha=sha,
+                branch=branch,
+                author=self.author
+            )
+            return True
+        except Exception as e:
+            raise RuntimeError(f"Failed to delete {filename}: {e}")
 
 
 def get_db():
@@ -83,6 +99,16 @@ def save_data(data):
 def upload_image(file_storage):
     db = get_db()
     return db.upload_to_github(file_storage)
+
+def delete_post(filename):
+    data = get_data()
+    entry = next((item for item in data if item["name"] == filename), None)
+    if not entry:
+        raise ValueError(f"File {filename} not found in data")
+    db.delete_from_github(filename, folder="uploads")
+    data = [item for item in data if item["name"] != filename]
+    save_data(data)
+    return Tru
 
 def login_required(f):
     @wraps(f)

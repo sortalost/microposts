@@ -64,10 +64,14 @@ def dashboard_edit():
     return render_template("dashboard_edit.html")
 
 
-@app.route("/dashboard/delete", methods=["GET", "POST"])
+@app.route("/dashboard/delete/<filename>", methods=["POST"])
 @utils.login_required
-def dashboard_delete():
-    return render_template("dashboard_delete.html")
+def dashboard_delete(filename):
+    try:
+        utils.delete_post(filename)
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 400
 
 
 @app.route("/images/<path:image_path>")

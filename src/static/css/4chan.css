@@ -74,6 +74,17 @@ a {
     font-size:80%;
 }
 
+.delete-link {
+    color: rgb(255, 39, 39);
+    font-size: 70%;
+}
+
+.delete-link:hover {
+    background-color: #c94545;
+    color:#eee;
+    text-decoration: underline;
+}
+
 /* Mobile-specific adjustments */
 @media (max-width: 600px) {
     .media img {
