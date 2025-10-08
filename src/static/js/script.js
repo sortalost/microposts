@@ -56,11 +56,13 @@ function deleteSetup() {
                   alert("Term removal failed: " + (data.error || "unknown error"));
               }
               statusDiv.style.display = 'none';
+              window.location.reload()
           })
           .catch(err => {
               console.error(err);
               alert("Term removal failed: network or server error");
               statusDiv.style.display = 'none';
+              window.location.reload()
           });
       });
   });
