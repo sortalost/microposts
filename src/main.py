@@ -85,12 +85,14 @@ def edit(filename):
         if not found:
             return jsonify({"success": False, "error": "File not found"}), 404
         utils.save_data(data)
+        flash(f"Edited {filename} successfully!")
         return jsonify({
             "success": True,
             "description": new_desc,
             "display_datetime": display_datetime_formatted
         })
     except Exception as e:
+        flash(f"Error occurred while editing {filename}. Check the console/logs.")
         return jsonify({"success": False, "error": str(e)}), 500
 
 

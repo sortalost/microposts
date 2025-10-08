@@ -53,13 +53,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     metaSpan.innerHTML = parts.join('|');
                 }
                 modal.style.display = 'none';
+                window.location.reload()
             } else {
                 alert("Edit failed: " + (data.error || "unknown error"));
+                window.location.reload()
             }
         })
         .catch(err => {
             console.error(err);
             alert("Edit failed: network or server error");
+            window.location.reload()
         });
     });
 });
