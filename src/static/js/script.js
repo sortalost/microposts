@@ -46,16 +46,17 @@ function deleteSetup() {
                   'X-Requested-With': 'XMLHttpRequest'
               }
           })
-          .then(res => {
-              if (res.ok) {
+          .then(res => res.json())
+          .then(data => {
+              if (data.success) {
                   this.closest('.term').remove();
               } else {
-                  alert("term removal failed");
+                  alert("Term removal failed: " + (data.error || "unknown error"));
               }
           })
           .catch(err => {
               console.error(err);
-              alert("Delete failed");
+              alert("Term removal failed: network or server error");
           });
       });
   });
