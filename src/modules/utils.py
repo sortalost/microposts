@@ -95,3 +95,7 @@ def login_required(f):
                 return redirect(url_for("login", next=request.path))
         return f(*args, **kwargs)
     return decorated_function
+
+def print_debug(string):
+    if current_app.debug:
+        print(f"[DEBUG] {string}")

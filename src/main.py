@@ -28,8 +28,9 @@ def dashboard_new():
         file = request.files.get("file")
         desc = request.form.get("description", "")
         date_str = request.form.get("date")
+        utils.print_debug(date_str)
         if date_str:
-            display_datetime_ts = int(datetime.strptime(date_str, "%Y-%m-%d").timestamp())
+            display_datetime_ts = int(datetime.strptime(date_str, "%Y-%m-%d(%a)%H:%M").timestamp())
         else:
             display_datetime_ts = int(datetime.now().timestamp())
         display_datetime_str = datetime.fromtimestamp(display_datetime_ts).strftime("%Y-%m-%d(%a)%H:%M")
