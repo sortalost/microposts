@@ -17,15 +17,9 @@ def index():
     return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
 
 
-@app.route("/dashboard")
+@app.route("/new", methods=["GET", "POST"])
 @utils.login_required
-def dashboard():
-    return render_template("dashboard.html")
-
-
-@app.route("/dashboard/new", methods=["GET", "POST"])
-@utils.login_required
-def dashboard_new():
+def new():
     if request.method == "POST":
         file = request.files.get("file")
         desc = request.form.get("description", "")
@@ -54,14 +48,14 @@ def dashboard_new():
             }
             all_images.append(entry)
             utils.save_data(all_images)
-            return redirect(url_for("dashboard_new"))
+            return redirect(url_for("new"))
         except Exception as e:
             flash(f"Upload failed: {e}", "error")
             return redirect(request.url)
-    return render_template("dashboard_new.html", today=datetime.now().strftime("%Y-%m-%dT%H:%M"))
+    return render_template("new.html", today=datetime.now().strftime("%Y-%m-%dT%H:%M"))
 
 
-@app.route("/dashboard/edit/<filename>", methods=["POST"])
+@app.route("/edit/<filename>", methods=["POST"])
 @utils.login_required
 def edit(filename):
     new_desc = request.form.get("description", "").strip()
@@ -98,7 +92,7 @@ def edit(filename):
         return jsonify({"success": False, "error": str(e)}), 500
 
 
-@app.route("/dashboard/delete/<filename>", methods=["POST"])
+@app.route("/delete/<filename>", methods=["POST"])
 @utils.login_required
 def delete(filename):
     try:
@@ -111,7 +105,7 @@ def delete(filename):
         return jsonify({"success": False, "error": str(e)}), 400
 
     
-@app.route("/dashboard/pin/<filename>", methods=["POST"])
+@app.route("/pin/<filename>", methods=["POST"])
 @utils.login_required
 def toggle_pin(filename):
     data = utils.get_data()

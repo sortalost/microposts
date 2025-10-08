@@ -5,7 +5,7 @@ document.querySelectorAll('.pin-link').forEach(link => {
         const termDiv = this.closest('.term');
         const statusDiv = document.getElementsByClassName('processing-status')[0];
         statusDiv.style.display = 'block';
-        fetch(`/dashboard/pin/${filename}`, {
+        fetch(`/pin/${filename}`, {
             method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })

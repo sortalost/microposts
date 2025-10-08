@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const filename = filenameInput.value;
         const newDesc = textarea.value;
         const newDt = datetimeInput.value;
-        fetch(`/dashboard/edit/${filename}`, {
+        fetch(`/edit/${filename}`, {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/x-www-form-urlencoded',

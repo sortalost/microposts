@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}New post{% endblock %}
 {% block scripts %}
-<link rel="stylesheet" href="/static/css/dashboard.css">
+<script src="/static/js/preview.js"></script>
+<link rel="stylesheet" href="/static/css/newform.css">
 {% endblock %}
 {% block body %}
 <div class="term">
@@ -12,14 +13,13 @@
         <textarea id="description" name="description" rows="7" placeholder="Enter description (optional)..."></textarea>
         <label for="date">Date <small>(UTC by default)</small></label>
         <input type="datetime-local" id="date" name="date" value="{{ today }}" step="60">
-        <button type="submit">Upload</button>
+        <p>
+            <button type="submit">Upload</button>
+        </p>
     </form>
 
     <div id="previewContainer" class="hidden">
-        <h3>Preview:</h3>
         <img id="previewImage" src="" alt="Preview">
     </div>
 </div>
-
-<script src="/static/js/dashboard.js"></script>
 {% endblock %}
