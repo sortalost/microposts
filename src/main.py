@@ -118,6 +118,14 @@ def servererror(e):
     return render_template("500.html", message=message)
 
 
+@app.errorhandler(Exception)
+def other_errors(e):
+    code = getattr(e, "code", 500)
+    if code in [404, 500]:
+        return e
+    return render_template("error.html", error=e, code=code), code
+
+
 @app.route("/login", methods=["GET","POST"])
 def login():
     if session.get("logged_in"):
