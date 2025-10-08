@@ -13,11 +13,7 @@ app.config.from_pyfile("config.py")
 @app.route("/")
 def index():
     uploads = utils.get_data()
-    try:
-        uploads.sort(key=lambda x: ((not x.get("pin", False)), -x["display_datetime"][1]))
-    except Exception as e:
-        flash(e)
-        pass
+    uploads.sort(key=lambda x: (-x.get("pin", 0), -x["display_datetime"][1]))
     return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
 
 
@@ -117,23 +113,13 @@ def delete(filename):
 @app.route("/dashboard/pin/<filename>", methods=["POST"])
 @utils.login_required
 def toggle_pin(filename):
-    utils.print_debug("pin fired")
-    try:
-        data = utils.get_data()
-        found = False
-        for item in data:
-            utils.print_debug(item)
-            if item["name"] == filename:
-                item["pin"] = not item.get("pin", False)
-                print(item['pin'])
-                found = True
-                break
-        if not found:
-            return jsonify({"success": False, "error": "File not found"}), 404
-        utils.save_data(data)
-        return jsonify({"success": True, "pin": item["pin"]})
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+    data = utils.get_data()
+    for item in data:
+        if item["name"] == filename:
+            item["pin"] = 0 if item.get("pin",0) else 1
+            utils.save_data(data)
+            return jsonify({"success": True, "pin": item["pin"]})
+    return jsonify({"success": False, "error": "File not found"}), 404
 
 
 @app.route("/images/<path:image_path>")
