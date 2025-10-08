@@ -49,7 +49,8 @@ def dashboard_new():
                 "url": result['url'],
                 "display_datetime": [display_datetime_str, display_datetime_ts],
                 "uploaded_at": result['timestamp'],
-                "description": desc
+                "description": desc,
+                "pin":0
             }
             all_images.append(entry)
             utils.save_data(all_images)
