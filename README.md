@@ -2,7 +2,7 @@
 > simple and small image + text posting.
 
 ## Deploy your own
-1. [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sortalost/qmaury-site),
+1. [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sortalost/microposts),
 2. Environment variables
 
 ![](https://github.com/user-attachments/assets/4e62e0f1-92d8-4d28-98f8-9de87d30c879)
