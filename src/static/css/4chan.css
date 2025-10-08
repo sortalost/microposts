@@ -70,6 +70,10 @@ a {
     color: #c94545!important;
 }
 
+.meta {
+    font-size:80%;
+}
+
 /* Mobile-specific adjustments */
 @media (max-width: 600px) {
     .media img {

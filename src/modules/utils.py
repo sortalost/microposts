@@ -71,7 +71,9 @@ def get_db():
 
 def get_data():
     db = get_db()
-    return db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)[::-1] #reverse order, latest first
+    data = db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)
+    data.sort(key=lambda x: x['display_datetime'][1], reverse=True)
+    return data
 
 def save_data(data):
     db = get_db()

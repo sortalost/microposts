@@ -12,4 +12,5 @@
 ## Todo
 - [ ] Editing and deleting posts. Right now they can be done manually by going to the [second](https://github.com/sortalost/microposts-storage) repository's `images.json`
 - [x] Exact time must be saved instead of 00:00 of that day.
+- [ ] Add pin posts feature
 - [ ] Add >greentext and \<redtext in description

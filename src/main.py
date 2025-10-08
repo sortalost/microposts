@@ -63,6 +63,12 @@ def dashboard_edit():
     return render_template("dashboard_edit.html")
 
 
+@app.route("/dashboard/delete", methods=["GET", "POST"])
+@utils.login_required
+def dashboard_delete():
+    return render_template("dashboard_delete.html")
+
+
 @app.route("/images/<path:image_path>")
 def proxy_image(image_path):
     headers = {
@@ -77,7 +83,7 @@ def proxy_image(image_path):
     )
     github_response = requests.get(url, headers=headers)
     if github_response.status_code == 200:
-        content_type = github_response.headers.get("Content-Type", "application/octet-stream")
+        content_type = github_response.headers.get("Content-Type", image_path.rsplit(".", 1)[-1].lower())
         return Response(github_response.content, content_type=content_type)
     else:
         abort(github_response.status_code)
