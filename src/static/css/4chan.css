@@ -118,8 +118,8 @@ a {
 
 .pin-icon {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -5px;
+    right: -15px;
     font-size: 18px;
     color: #727272;
     cursor: default;
