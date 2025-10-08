@@ -108,7 +108,7 @@ a {
     text-decoration: underline;
 }
 
-.delete-status {
+.processing-status {
     display:none;
     color:#b6b6b6;
     font-weight:bold;
