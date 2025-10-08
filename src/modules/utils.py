@@ -109,7 +109,7 @@ def delete_post(filename):
     db.delete_from_github(filename, folder="uploads")
     data = [item for item in data if item["name"] != filename]
     save_data(data)
-    return Tru
+    return True
 
 def login_required(f):
     @wraps(f)
