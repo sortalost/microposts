@@ -101,6 +101,7 @@ def upload_image(file_storage):
     return db.upload_to_github(file_storage)
 
 def delete_post(filename):
+    db = get_db()
     data = get_data()
     entry = next((item for item in data if item["name"] == filename), None)
     if not entry:
