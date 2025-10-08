@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
+{%block scripts %}
+<script src="/static/js/modal.js"></script>
+{% endblock %}
 {% block body %}
 {% if uploads==[] %}
 <div class="term">
