@@ -5,7 +5,7 @@ USERNAME = os.getenv("username") or "admin"
 PASSWORD = os.getenv("password") or "default"
 SECRET_KEY = os.getenv("secret_key") or "secret123"
 
-DATA_FILE = os.getenv("data_file") "images.json" # where the data and image url will be stored on the other repo
+DATA_FILE = os.getenv("data_file") or "images.json" # where the data and image url will be stored on the other repo
 GITHUB_REPO = os.getenv("github_repo")
 GITHUB_REPO_BRANCH = os.getenv("github_repo_branch") or "master"
 GITHUB_EMAIL = os.getenv("github_email")
