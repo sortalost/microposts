@@ -8,6 +8,7 @@
 }
 
 .term {
+    position: relative
     font-size: 16px!important;
     background-color: #000000c5;
     color: #b3b8c3;
@@ -113,6 +114,15 @@ a {
     font-weight:bold;
     text-align:center;
     width:100%;
+}
+
+.pin-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 18px;
+    color: #727272;
+    cursor: default;
 }
 
 /* Mobile-specific adjustments */
