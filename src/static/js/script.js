@@ -39,6 +39,7 @@ function deleteSetup() {
       link.addEventListener('click', function(e) {
           e.preventDefault();
           if (!confirm("Sure?")) return;
+          const termDiv = this.closest('.term');
           const statusDiv = termDiv.querySelector('.delete-status');
           statusDiv.style.display = 'inline';
           const filename = this.dataset.filename;
