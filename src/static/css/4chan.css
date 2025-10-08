@@ -96,6 +96,17 @@ a {
     text-decoration: underline;
 }
 
+.pin-link {
+    color: #5eff36;
+    font-size: 70%;
+}
+
+.pin-link:hover {
+    background-color: #4eff36;
+    color:#0f0f0f;
+    text-decoration: underline;
+}
+
 .delete-status {
     display:none;
     color:#ff3636;

@@ -32,6 +32,8 @@
         <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
         &nbsp;
         <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
+        &nbsp;
+        <a href="#" class="pin-link" data-filename="{{ item.name }}">{% if item.pin %}[unpin]{% else %}[pin]{% endif %}</a>
         {% endif %}
     </span>
     <div class="media">

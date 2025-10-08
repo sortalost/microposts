@@ -13,6 +13,7 @@ app.config.from_pyfile("config.py")
 @app.route("/")
 def index():
     uploads = utils.get_data()
+    uploads.sort(key=lambda x: ((not x.get("pin", False)), -x["display_datetime"][1]))
     return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
 
 
@@ -107,6 +108,25 @@ def delete(filename):
         utils.print_debug(e)
         flash(f"Error while deleting {filename}. Check console/logs.", 'error')
         return jsonify({"success": False, "error": str(e)}), 400
+
+    
+@app.route("/dashboard/pin/<filename>", methods=["POST"])
+@utils.login_required
+def toggle_pin(filename):
+    try:
+        data = utils.get_data()
+        found = False
+        for item in data:
+            if item["name"] == filename:
+                item["pin"] = not item.get("pin", False)
+                found = True
+                break
+        if not found:
+            return jsonify({"success": False, "error": "File not found"}), 404
+        utils.save_data(data)
+        return jsonify({"success": True, "pin": item["pin"]})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 
 
 @app.route("/images/<path:image_path>")
