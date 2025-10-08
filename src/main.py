@@ -71,6 +71,7 @@ def dashboard_delete(filename):
         utils.delete_post(filename)
         return jsonify({"success": True})
     except Exception as e:
+        utils.print_debug(e)
         return jsonify({"success": False, "error": str(e)}), 400
 
 
