@@ -1,4 +1,5 @@
 import requests
+import mimetypes
 import traceback
 from .modules import utils
 from datetime import datetime
@@ -91,11 +92,13 @@ def proxy_image(image_path):
         branch=app.config['GITHUB_REPO_BRANCH']
     )
     github_response = requests.get(url, headers=headers)
-    if github_response.status_code == 200:
-        content_type = github_response.headers.get("Content-Type", image_path.rsplit(".", 1)[-1].lower())
-        return Response(github_response.content, content_type=content_type)
-    else:
+    if github_response.status_code != 200:
         abort(github_response.status_code)
+    content_type, _ = mimetypes.guess_type(image_path)
+    if content_type is None:
+        content_type = "image/png"
+    return Response(github_response.content, content_type=content_type)
+
 
 
 @app.route("/about")
