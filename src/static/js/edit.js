@@ -54,9 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     parts[1] = ` ${data.display_datetime} `;
                     metaSpan.innerHTML = parts.join('|');
                 }
-                if (newDt) {
+                const agoSpan = termDiv.querySelector('.ago');
+                if (agoSpan && newDt) {
                     const selectedTs = Math.floor(new Date(newDt).getTime() / 1000);
-                    timeAgo(selectedTs);
+                    agoSpan.dataset.timestamp = selectedTs;
+                    timeAgo(selectedTs); // if your timeAgo function accepts element
                 }
                 modal.style.display = 'none';
                 statusDiv.style.display = 'none';
