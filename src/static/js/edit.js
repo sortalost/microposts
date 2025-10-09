@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cancelBtn.addEventListener('click', () => modal.style.display = 'none');
     form.addEventListener('submit', function(e) {
-        statusDiv.style.display = 'block';
         e.preventDefault();
+        statusDiv.style.display = 'block';
         const filename = filenameInput.value;
         const newDesc = textarea.value;
         const newDt = datetimeInput.value;
@@ -48,17 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const termDiv = modal.currentTermDiv;
                 const descSpan = termDiv.querySelector('.description');
                 if (descSpan) descSpan.innerHTML = data.description;
-                const metaSpan = termDiv.querySelector('.meta');
-                if (metaSpan && data.display_datetime) {
-                    const parts = metaSpan.innerHTML.split('|');
-                    parts[1] = ` ${data.display_datetime} `;
-                    metaSpan.innerHTML = parts.join('|');
-                }
+                const displayDtSpan = termDiv.querySelector('.display-datetime');
                 const agoSpan = termDiv.querySelector('.ago');
-                if (agoSpan && newDt) {
+                const urlLink = termDiv.querySelector('.url');
+                if (displayDtSpan && data.display_datetime) {
                     const selectedTs = Math.floor(new Date(newDt).getTime() / 1000);
-                    agoSpan.dataset.timestamp = selectedTs;
-                    timeAgo(selectedTs); // if your timeAgo function accepts element
+                    displayDtSpan.textContent = data.display_datetime;
+                    displayDtSpan.dataset.timestamp = selectedTs;
+                    if (agoSpan) {
+                        agoSpan.dataset.timestamp = selectedTs;
+                        timeAgo(selectedTs);
+                    }
+                    if (urlLink) {
+                        urlLink.href = `#${selectedTs}`;
+                    }
                 }
                 modal.style.display = 'none';
                 statusDiv.style.display = 'none';
