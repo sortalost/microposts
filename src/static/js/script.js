@@ -1,6 +1,6 @@
-
 function timeAgo(unixTimestamp) {
-  const seconds = Math.floor(Date.now() / 1000) - unixTimestamp;
+  const now = Math.floor(Date.now() / 1000);
+  let seconds = now - unixTimestamp;
   const intervals = [
     { label: 'year', seconds: 31536000 },
     { label: 'month', seconds: 2592000 },
@@ -9,14 +9,18 @@ function timeAgo(unixTimestamp) {
     { label: 'minute', seconds: 60 },
     { label: 'second', seconds: 1 }
   ];
+  const isFuture = seconds < 0;
+  seconds = Math.abs(seconds);
   for (const interval of intervals) {
     const count = Math.floor(seconds / interval.seconds);
     if (count >= 1) {
-      return `${count} ${interval.label}${count !== 1 ? 's' : ''} ago`;
+      const label = `${count} ${interval.label}${count !== 1 ? 's' : ''}`;
+      return isFuture ? `${label} in the future` : `${label} ago`;
     }
   }
-  return 'just now';
+  return isFuture ? 'soon' : 'just now';
 }
+
 
 function updateTimeAgo() {
   document.querySelectorAll(".ago").forEach(el => {
@@ -73,3 +77,4 @@ window.addEventListener('DOMContentLoaded', updateTimeAgo);
 window.addEventListener('DOMContentLoaded', deleteSetup);
 window.addEventListener('DOMContentLoaded', adjustBodyPadding);
 window.addEventListener('resize', adjustBodyPadding);
+
