@@ -4,10 +4,7 @@
 ## Deploy your own
 1. [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sortalost/microposts),
 2. Environment variables
-
-![](https://github.com/user-attachments/assets/4e62e0f1-92d8-4d28-98f8-9de87d30c879)
-
-3. Download `.env.example` -> rename it to `.env` -> edit the contents and import it on vercel's (Settings -> Environment variables)
+> Download `.env.example` -> rename it to `.env` -> edit the contents and import it on vercel's (Settings -> Environment variables)
 
 ![](https://github.com/user-attachments/assets/01053861-abca-4ad8-abea-a3088c72e1c7)
 
