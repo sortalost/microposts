@@ -47,12 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.success) {
                 const termDiv = modal.currentTermDiv;
                 const descSpan = termDiv.querySelector('.description');
-                if (descSpan) descSpan.innerText = data.description;
+                if (descSpan) descSpan.innerHTML = data.description;
                 const metaSpan = termDiv.querySelector('.meta');
                 if (metaSpan && data.display_datetime) {
                     const parts = metaSpan.innerHTML.split('|');
                     parts[1] = ` ${data.display_datetime} `;
                     metaSpan.innerHTML = parts.join('|');
+                }
+                if (newDt) {
+                    const selectedTs = Math.floor(new Date(newDt).getTime() / 1000);
+                    timeAgo(selectedTs);
                 }
                 modal.style.display = 'none';
                 statusDiv.style.display = 'none';
