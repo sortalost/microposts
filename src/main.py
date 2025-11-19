@@ -12,8 +12,12 @@ app.config.from_pyfile("config.py")
 
 @app.route("/")
 def index():
+    utils.print_debug("fetching")
     uploads = utils.get_data()
+    utils.print_debug("fetched")
+    utils.print_debug(uploads)
     uploads.sort(key=lambda x: (-x.get("pin", 0), -x["display_datetime"][1]))
+    utils.print_debug("sorted")
     return render_template('index.html', uploads=uploads, user=app.config['DISPLAY_NAME'])
 
 
