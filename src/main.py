@@ -170,7 +170,7 @@ def servererror(e):
 def other_errors(e):
     code = getattr(e, "code", 500)
     if code in [404, 500]:
-        return e
+        return render_template("error.html", error=e, code=code), code
     flash(f"Error: {code}", category='error')
     return render_template("error.html", error=e, code=code), code
 
