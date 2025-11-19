@@ -12,6 +12,7 @@ app.config.from_pyfile("config.py")
 
 @app.route("/")
 def index():
+    utils.print_debug(app.config['GITHUB_TOKEN'])
     utils.print_debug("fetching")
     uploads = utils.get_data()
     utils.print_debug("fetched")
